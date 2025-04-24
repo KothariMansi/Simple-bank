@@ -15,4 +15,7 @@ migratedowm:
 sqlc:
 	sqlc generate
 
-.PHONY: postgres createdb dropdb migrateup migratedowm sqlc
+test:
+	go test -v -cover ./...
+
+.PHONY: postgres createdb dropdb migrateup migratedowm sqlc test
