@@ -9,7 +9,7 @@ dropdb:
 migrateup:
 	migrate -path db/migration -database "postgresql://root:pass@4969@localhost:5432/simple_bank?sslmode=disable" -verbose up
 
-migratedowm:
+migratedown:
 	migrate -path db/migration -database "postgresql://root:pass@4969@localhost:5432/simple_bank?sslmode=disable" -verbose down
 
 sqlc:
@@ -18,4 +18,4 @@ sqlc:
 test:
 	go test -v -cover ./...
 
-.PHONY: postgres createdb dropdb migrateup migratedowm sqlc test
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test
