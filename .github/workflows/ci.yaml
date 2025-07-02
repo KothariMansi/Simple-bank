@@ -43,9 +43,9 @@ jobs:
 
     - name: Install golang-migrate
       run: |
-        Invoke-WebRequest -Uri https://github.com/golang-migrate/migrate/releases/download/v4.18.3/migrate.4.18.3.windows-amd64.zip -OutFile "migrate.zip"
-        Expand-Archive -Path "migrate.zip" -DestinationPath ".\migrate-bin"
-        echo "$PWD\migrate-bin" | Out-File -Append -FilePath $env:GITHUB_PATH
+        curl -L https://github.com/golang-migrate/migrate/releases/download/v4.18.3/migrate.darwin-arm64.tar.gz | tar xvz
+        sudo mv migrate.linux-amd64 /usr/bin
+        which migrate
 
     - name: Run migrations
       run: make migrateup
