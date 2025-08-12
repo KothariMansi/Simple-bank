@@ -14,6 +14,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      DB_DRIVER: ${{ secrets.DB_DRIVER }}
+      DB_SOURCE: ${{ secrets.DB_SOURCE }}
+      SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+
     # Service containers to run with `container-job`
     services:
       # Label used to access the service container
@@ -22,9 +30,9 @@ jobs:
         image: postgres:14
         # Provide the password for postgres
         env:
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: pass@4969
-          POSTGRES_DB: simple_bank
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
         # Set health checks to wait until postgres has started
         ports:
           # Maps tcp port 5432 on service container to the host
